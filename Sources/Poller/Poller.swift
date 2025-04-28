@@ -2,14 +2,14 @@ import Foundation
 import Combine
 
 // MARK: - Protocol
-public protocol Poller {
+public protocol PollerProtocol {
     var publisher: AnyPublisher<Void, Never> { get }
     func start()
     func stop()
 }
 
 // MARK: - Class
-open class DefaultPoller: Poller {
+open class Poller: PollerProtocol {
     // MARK: - Variables
     private var timerSubscription: AnyCancellable?
     private let interval: TimeInterval
