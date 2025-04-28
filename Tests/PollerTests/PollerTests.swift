@@ -8,7 +8,7 @@ final class PollerTests: XCTestCase {
 
     func testPollerFiresImmediatelyWhenConfigured() {
         let expectation = XCTestExpectation(description: "Poller should fire immediately")
-        let poller: Poller = DefaultPoller(interval: 1, fireImmediately: true)
+        let poller: PollerProtocol = Poller(interval: 1, fireImmediately: true)
         var fireCount = 0
 
         poller.publisher
@@ -30,7 +30,7 @@ final class PollerTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Poller should not fire immediately")
         expectation.isInverted = true
 
-        let poller: Poller = DefaultPoller(interval: 1, fireImmediately: false)
+        let poller: PollerProtocol = Poller(interval: 1, fireImmediately: false)
 
         poller.publisher
             .sink {
@@ -46,7 +46,7 @@ final class PollerTests: XCTestCase {
 
     func testPollerFiresAfterInterval() {
         let expectation = XCTestExpectation(description: "Poller should fire after interval")
-        let poller: Poller = DefaultPoller(interval: 1, fireImmediately: false)
+        let poller: PollerProtocol = Poller(interval: 1, fireImmediately: false)
 
         poller.publisher
             .sink {
@@ -65,7 +65,7 @@ final class PollerTests: XCTestCase {
         let intervalExpectation = XCTestExpectation(description: "Should not fire again")
         intervalExpectation.isInverted = true
 
-        let poller: Poller = DefaultPoller(interval: 0.2, fireImmediately: true)
+        let poller: PollerProtocol = Poller(interval: 0.2, fireImmediately: true)
         var fireCount = 0
 
         poller.publisher

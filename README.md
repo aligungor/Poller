@@ -46,7 +46,7 @@ Or use **Xcode**:
 import Poller
 import Combine
 
-let poller = DefaultPoller(interval: 1.0, fireImmediately: true)
+let poller = Poller(interval: 1.0, fireImmediately: true)
 var cancellables = Set<AnyCancellable>()
 
 poller.publisher
